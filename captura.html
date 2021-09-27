@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./captura.css" />
+    <script src="./captura.js"></script>
+
+    <title>OusyHair</title>
+
+    <!-- Facebook Pixel Code (Vanessa) -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "319164259865859");
+      fbq("track", "PageView");
+      fbq("track", "Entroupáginacadastro");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=319164259865859&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Facebook Pixel Code -->
+  </head>
+  <body>
+    <section class="captura">
+      <div class="divisor-captura">
+        <div class="form">
+          <p>
+            Você tomou a decisão <span>certa.</span> <br />
+            Você decidiu ser um <span>empreendedor Ousy Hair Class!</span>
+            <br />
+            Agora você tem <span>vantagens exclusivas</span> sobre os nossos
+            <span>produtos.</span>
+          </p>
+
+          <form action="#" class="inner-form">
+            <input
+              type="text"
+              placeholder="Insira seu nome"
+              class="input-name"
+            />
+            <input
+              type="email"
+              placeholder="Insira seu melhor email"
+              class="input-email"
+            />
+            <input
+              type="text"
+              placeholder="Insira seu número de telefone (com DDD)"
+              class="input-phone-number"
+            />
+            <button>SEJA UM EMPREENDEDOR OUSY</button>
+          </form>
+        </div>
+
+        <div class="image">
+          <img src="./003-Recovered .png" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <section class="informacao">
+      <div class="divisor-informacao">
+        <h1>QUAIS SÃO AS VANTAGENS DE SER UM EMPREENDEDOR OUSY HAIR CLASS?</h1>
+        <div class="cards">
+          <div class="card">
+            <img src="../shopping_basket.svg" alt="" class="icon" />
+            <p>
+              Comprando a partir de 5 frascos, cada um deles sai por apenas
+              R$49,90!
+            </p>
+          </div>
+
+          <div class="card">
+            <img src="../request_page.svg" alt="" class="icon" />
+            <p>
+              Você pode lucrar 100%, revendendo pelo preço original do site, que
+              é R$97,00.
+            </p>
+          </div>
+
+          <div class="card">
+            <img src="../support_agent.svg" alt="" class="icon" />
+            <p>
+              Suporte do nosso setor de vendas, um dos mais bem-capacitados do
+              Brasil, para envios de artes e materiais para te ajudar na
+              divulgação do seu mais novo negócio.
+            </p>
+          </div>
+        </div>
+
+        <button class="bottom-button">QUERO SER UM REVENDEDOR OUSY</button>
+
+
+
+        <p class="redes">Nos acompanhe nas redes sociais e saiba de tudo que está acontecendo em primeira mão.</p>
+      </div>
+    </section>
+  </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.querySelector(".inner-form");
+      const post_url = "http://127.0.0.1:8000/leads/include/name-email-phone";
+      const token = "gbg6V2AqpaZjkgCXTiqsooMfxBzreu#VInI9*HjuH*X0ixSddG"; // "{{ token }} (Will be served from the back-end, this one is for testing purposes only)"
+
+      form.onsubmit = () => {
+        document.querySelector(".input-name").style.border = "None";
+        document.querySelector(".input-email").style.border = "None";
+        document.querySelector(".input-phone-number").style.border = "None";
+
+        let name_input = document.querySelector(".input-name").value;
+        let email_input = document.querySelector(".input-email").value;
+        let phone_number_input = document.querySelector(
+          ".input-phone-number"
+        ).value;
+
+        console.log(name_input, email_input);
+        if (name_input === "") {
+          console.log("name is empty");
+          document.querySelector(".input-name").style.border = "2px solid red";
+        }
+        if (email_input === "") {
+          console.log("email is empty");
+          document.querySelector(".input-email").style.border = "2px solid red";
+        }
+        if (phone_number_input === "") {
+          console.log("phone is empty");
+          document.querySelector(".input-phone-number").style.border =
+            "2px solid red";
+        }
+        if (
+          name_input !== "" &&
+          email_input !== "" &&
+          phone_number_input !== ""
+        ) {
+          console.log("preenchidos");
+          fetch(post_url, {
+            method: "POST",
+            headers: {
+              token: token,
+            },
+            body: JSON.stringify({
+              name: name_input,
+              email: email_input,
+              phone_number: phone_number_input,
+            }),
+          }).then((response) => {
+            console.log(response.status);
+            if (response.status == 200) {
+              window.alert(
+                "Oba! Recebemos seu contato, logo nosso time entrará em contato &#128516;"
+              );
+            } else {
+              window.alert("Ops, tivemos um erro, favor contatar o suporte");
+            }
+          });
+        }
+
+        return false;
+      };
+    });
+  </script>
+</html>
